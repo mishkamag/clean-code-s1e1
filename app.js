@@ -114,7 +114,17 @@ var taskCompleted = function () {
   var listItem = this.parentNode;
 
   completedTasksHolder.appendChild(listItem);
-  bindTaskEvents(listItem, taskIncomplete);
+  bindTaskEvents(listItem);
+};
+
+var taskIncomplete = function () {
+  console.log("Incomplete Task...");
+  //Mark task as incomplete.
+  //When the checkbox is unchecked
+  //Append the task list item to the #incompleteTasks.
+  var listItem = this.parentNode;
+  incompleteTaskHolder.appendChild(listItem);
+  bindTaskEvents(listItem, taskCompleted);
 };
 
 var ajaxRequest = function () {
