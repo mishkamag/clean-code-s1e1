@@ -18,8 +18,11 @@ var createNewTaskElement = function (taskString) {
   listItem.className = "todo__task"; // Assign the class name 'todo__task' to the list item
 
   var checkBox = document.createElement("input");
+
   var label = document.createElement("label");
+
   var editInput = document.createElement("input");
+
   var editButton = document.createElement("button");
 
   var deleteButton = document.createElement("button");
@@ -30,11 +33,11 @@ var createNewTaskElement = function (taskString) {
   deleteButtonImg.className = "todo__delete-icon"; // Assign classes to the delete icon
 
   label.innerText = taskString;
-  label.className = "task";
+  label.className = "task todo__label";
 
   checkBox.type = "checkbox";
   editInput.type = "text";
-  editInput.className = "task";
+  editInput.className = "task todo__edit-input";
 
   editButton.innerText = "Edit";
   editButton.className = "edit";
@@ -104,20 +107,14 @@ var deleteTask = function () {
 var taskCompleted = function () {
   console.log("Complete Task...");
 
+  var label = this.parentNode.querySelector(".todo__label");
+  label.classList.add("completed");
+
   //Append the task list item to the #completed-tasks
   var listItem = this.parentNode;
+
   completedTasksHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskIncomplete);
-};
-
-var taskIncomplete = function () {
-  console.log("Incomplete Task...");
-  //Mark task as incomplete.
-  //When the checkbox is unchecked
-  //Append the task list item to the #incompleteTasks.
-  var listItem = this.parentNode;
-  incompleteTaskHolder.appendChild(listItem);
-  bindTaskEvents(listItem, taskCompleted);
 };
 
 var ajaxRequest = function () {
